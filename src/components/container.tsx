@@ -4,7 +4,7 @@ type ContainerProps = {
 
 function Container({ children }: ContainerProps) {
   return (
-    <div className="flex flex-col max-w-5xl min-h-screen mx-auto bg-white/[2%]">
+    <div className="flex flex-col max-w-6xl min-h-screen mx-auto bg-white/[2%]">
       {children}
     </div>
   );
