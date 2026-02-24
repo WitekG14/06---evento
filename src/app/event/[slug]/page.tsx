@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type EventPageProps = {
   params: {
     slug: string;
@@ -11,7 +13,14 @@ async function EventPage({ params }: EventPageProps) {
   );
   const event = await res.json();
 
-  return <main>Event Page</main>;
+  return (
+    <main>
+      <section>
+        <Image />
+      </section>
+      <div></div>
+    </main>
+  );
 }
 
 export default EventPage;
