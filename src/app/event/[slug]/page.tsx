@@ -1,4 +1,5 @@
 import H1 from "@/components/h1";
+import Section, { SectionContent, SectionHeading } from "@/components/section";
 import Image from "next/image";
 
 type EventPageProps = {
@@ -57,6 +58,17 @@ async function EventPage({ params }: EventPageProps) {
           </div>
         </div>
       </section>
+
+      <div className="min-h-[75vh] text-center px-5 py-16">
+        <Section>
+          <SectionHeading>About this event</SectionHeading>
+          <SectionContent>{event.description}</SectionContent>
+        </Section>
+        <Section>
+          <SectionHeading>Location</SectionHeading>
+          <SectionContent>{event.location}</SectionContent>
+        </Section>
+      </div>
     </main>
   );
 }
