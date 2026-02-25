@@ -1,5 +1,6 @@
 import H1 from "@/components/h1";
 import Section, { SectionContent, SectionHeading } from "@/components/section";
+import { sleep } from "@/lib/utils";
 import Image from "next/image";
 
 type EventPageProps = {
@@ -10,6 +11,8 @@ type EventPageProps = {
 
 async function EventPage({ params }: EventPageProps) {
   const slug = params.slug;
+
+  await sleep(2000);
   const res = await fetch(
     `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`,
   );
