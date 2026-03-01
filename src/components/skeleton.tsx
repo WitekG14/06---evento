@@ -4,7 +4,7 @@ type SkeletonProps = {
   className?: string;
 };
 
-function skeleton({ className }: SkeletonProps) {
+function Skeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
@@ -15,4 +15,4 @@ function skeleton({ className }: SkeletonProps) {
   );
 }
 
-export default skeleton;
+export default Skeleton;
