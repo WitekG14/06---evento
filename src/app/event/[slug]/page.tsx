@@ -1,6 +1,7 @@
 import H1 from "@/components/h1";
 import Section, { SectionContent, SectionHeading } from "@/components/section";
 import { sleep } from "@/lib/utils";
+import { Metadata } from "next";
 import Image from "next/image";
 
 type EventPageProps = {
@@ -8,6 +9,22 @@ type EventPageProps = {
     slug: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: EventPageProps): Promise<Metadata> {
+  const slug = params.slug;
+
+  const res = await fetch(
+    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`,
+  );
+  const event = await res.json();
+
+  return {
+    title: `Evento - ${event.name}`,
+    description: event.description,
+  };
+}
 
 async function EventPage({ params }: EventPageProps) {
   const slug = params.slug;

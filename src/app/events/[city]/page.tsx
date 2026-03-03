@@ -2,12 +2,20 @@ import EventsList from "@/components/events-list";
 import H1 from "@/components/h1";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { capitalize } from "@/lib/utils";
 
 type EventsPageProps = {
   params: {
     city: string;
   };
 };
+
+export function generateMetadata({ params }: EventsPageProps) {
+  const city = params.city;
+  return {
+    title: `Evento - Events in ${capitalize(city === "all" ? "All Cities" : city)}`,
+  };
+}
 
 async function EventsPage({ params }: EventsPageProps) {
   const city = params.city;
