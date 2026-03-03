@@ -1,6 +1,5 @@
 import { EventoEvent } from "@/lib/types";
 import EventCard from "./event-card";
-import { sleep } from "@/lib/utils";
 
 type EventsListProps = {
   city: string;
