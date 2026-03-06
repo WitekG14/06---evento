@@ -1,11 +1,1 @@
-export type EventoEvent = {
-  id: number;
-  name: string;
-  city: string;
-  slug: string;
-  location: string;
-  date: Date;
-  organizerName: string;
-  imageUrl: string;
-  description: string;
-};
+export type { EventoEvent } from "@prisma/client";
