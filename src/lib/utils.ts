@@ -32,7 +32,7 @@ export async function getEvent(slug: string) {
   return event;
 }
 
-export async function getEvents(city: string) {
+export async function getEvents(city: string, page = 1) {
   // const res = await fetch(
   //   `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`,
   // );
@@ -45,9 +45,17 @@ export async function getEvents(city: string) {
     orderBy: {
       date: "asc",
     },
+    take: 6,
+    skip: (page - 1) * 6,
   });
 
-  return events;
+  const totalCount = await prisma.eventoEvent.count({
+    where: {
+      city: city === "all" ? undefined : capitalize(city),
+    },
+  });
+
+  return { events, totalCount };
 }
 
 export async function sleep(ms: number) {
