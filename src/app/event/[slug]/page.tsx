@@ -1,6 +1,6 @@
 import H1 from "@/components/h1";
 import Section, { SectionContent, SectionHeading } from "@/components/section";
-import { getEvent, sleep } from "@/lib/utils";
+import { getEvent } from "@/lib/server-utils";
 import { Metadata } from "next";
 import Image from "next/image";
 
