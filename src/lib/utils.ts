@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { EventoEvent } from "@/generated/prisma";
 import { PrismaClient } from "@prisma/client";
 import { notFound } from "next/navigation";
+import { unstable_cache } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -14,7 +15,7 @@ export function cn(...classes: ClassValue[]) {
   return twMerge(clsx(classes));
 }
 
-export async function getEvent(slug: string) {
+export const getEvent = unstable_cache(async (slug: string) => {
   // const res = await fetch(
   //   `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`,
   // );
@@ -30,9 +31,9 @@ export async function getEvent(slug: string) {
     return notFound();
   }
   return event;
-}
+});
 
-export async function getEvents(city: string, page = 1) {
+export const getEvents = unstable_cache(async (city: string, page = 1) => {
   // const res = await fetch(
   //   `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`,
   // );
@@ -56,7 +57,7 @@ export async function getEvents(city: string, page = 1) {
   });
 
   return { events, totalCount };
-}
+});
 
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
