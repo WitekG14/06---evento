@@ -30,10 +30,13 @@ export const getEvents = unstable_cache(async (city: string, page = 1) => {
   // );
   // const events: EventoEvent[] = await res.json();
 
+  const cityFilter = city === "all" ? undefined : capitalize(city);
+
+  const where = cityFilter ? { city: cityFilter } : undefined;
+  console.log(`[getEvents] city=${city}, filter=${cityFilter}, page=${page}`);
+
   const events: EventoEvent[] = await prisma.eventoEvent.findMany({
-    where: {
-      city: city === "all" ? undefined : capitalize(city),
-    },
+    where,
     orderBy: {
       date: "asc",
     },
@@ -42,10 +45,11 @@ export const getEvents = unstable_cache(async (city: string, page = 1) => {
   });
 
   const totalCount = await prisma.eventoEvent.count({
-    where: {
-      city: city === "all" ? undefined : capitalize(city),
-    },
+    where,
   });
 
+  console.log(
+    `[getEvents] found ${events.length} events, totalCount=${totalCount}`,
+  );
   return { events, totalCount };
 });
