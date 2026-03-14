@@ -18,7 +18,6 @@ export default function SearchForm() {
     <form
       className="w-full sm:w-[580px]"
       onSubmit={(e) => handleSubmit(e)}
-      data-netlify
     >
       <input
         className="w-full h-16 rounded-lg bg-white/[7%] px-6 outline-none ring-accent/50 transition focus:ring-2 focus:bg-white/10"
